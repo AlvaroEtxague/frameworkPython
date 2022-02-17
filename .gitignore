@@ -1,0 +1,10 @@
+.pytest_cache
+myapp.egg-info
+utils
+geckodriver.log
+.idea
+venv
+config.py
+conftest.py
+reports/*
+README.md
