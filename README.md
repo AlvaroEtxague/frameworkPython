@@ -13,8 +13,8 @@
   - Type the following command: git clone https://github.com/zippote/frameworkPython.git
   - Hit enter and wait until the process is completed
   - Navigate to the project root folder cmd or IDE terminal
-  - create new virtual env by running `py -m venv venvs`
-  - venvs will be created under the root directory \venvs\
+  - create new virtual env by running `py -m venv venv`
+  - venv will be created under the root directory \venv\
   - to activate venv run `.\venv\Scripts\activate`
   - run `pip install -r requirements.txt`
 
