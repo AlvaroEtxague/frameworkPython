@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
 import allure
 
 class BasePage(object):
@@ -19,13 +21,13 @@ class BasePage(object):
     def initial_setup(self, browser="chrome"):
         if browser.lower() == "chrome":
             try:
+                serv = Service("resources/chromedriver.exe")
                 self.options = webdriver.ChromeOptions()
                 self.options.headless = True
                 self.options.add_argument("start-maximized")
                 self.options.add_experimental_option(
                     'excludeSwitches', ['enable-logging'])
-                self.driver = webdriver.Chrome(
-                    options=self.options)
+                self.driver = webdriver.Chrome(service=serv, options=self.options)
                 self.driver.implicitly_wait(10)
             except:
                 raise Exception(
@@ -33,11 +35,11 @@ class BasePage(object):
 
         elif browser.lower() == "firefox":
             try:
+                serv = Service("resources/geckodriver.exe")
                 self.options = webdriver.FirefoxOptions()
                 self.options.headless = True
                 self.options.add_argument("start-maximized")
-                self.driver = webdriver.Firefox(
-                    options=self.options)
+                self.driver = webdriver.Firefox(service=serv, options=self.options)
                 self.driver.implicitly_wait(10)
             except:
                 raise Exception(
