@@ -15,7 +15,7 @@
   - Navigate to the project root folder cmd or IDE terminal
   - create new virtual env by running `py -m venv venvs`
   - venvs will be created under the root directory \venvs\
-  - to activate venv run `.\venvs\Scripts\activate`
+  - to activate venv run `.\venv\Scripts\activate`
   - run `pip install -r requirements.txt`
 
 
