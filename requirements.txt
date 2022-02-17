@@ -14,7 +14,6 @@ execnet==1.9.0
 h11==0.13.0
 idna==3.3
 iniconfig==1.1.1
--e git+https://github.com/zippote/frameworkPython.git@5c681b3ce65f8cb2055307ec1550131631417698#egg=myapp
 outcome==1.1.0
 packaging==21.3
 pluggy==1.0.0
