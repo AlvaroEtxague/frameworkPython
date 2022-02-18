@@ -12,7 +12,9 @@ def login_page():
     login_page.assert_login_page_url()
     login_page.assert_login_page_title()
     print("\n Initialize login page")
-    return login_page
+    yield login_page
+
+    login_page.quit()
 
 
 @fixture(scope='function')
@@ -23,4 +25,6 @@ def forgot_pass():
     forgot_pass_page.assert_forgot_password_page_url()
     forgot_pass_page.assert_forgot_password_page_title()
     print("\n Initialize forgot password page")
-    return forgot_pass_page
+    yield forgot_pass_page
+
+    forgot_pass_page.quit()
