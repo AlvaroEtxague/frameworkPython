@@ -13,7 +13,7 @@ Each page is self contained in a separate module and all pages inherit from base
 
 Each module contains the page locators, getter functions and page actions. 
 
-A note, for large projects I would recommend breaking up each module into locators, getters and actions. Example: login_page_locators.py, login_page_getters.py, login_page_actions.py
+A note: for large projects I would recommend breaking up each module into locators, getters and actions. Example: login_page_locators.py, login_page_getters.py, login_page_actions.py
 
 ## App Tests:
 The app_tests package contains all tests.
