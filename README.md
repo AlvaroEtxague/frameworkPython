@@ -7,7 +7,7 @@ This is a UI framework built on Python and Selenium. It follows a POM design.
 The app_base package contains the core page and element functions.
 
 ## App Pages:
-The app_pages package contains the all pages.
+The app_pages package contains all pages.
 
 Each page is self contained in a separate module and all pages inherit from base_page.py
 
@@ -16,7 +16,7 @@ Each module contains the page locators, getter functions and page actions.
 A note, for large projects I would recommend breaking up each module into locators, getters and actions. Example: login_page_locators.py, login_page_getters.py, login_page_actions.py
 
 ## App Tests:
-The app_tests package contains the all tests.
+The app_tests package contains all tests.
 
 Tests are organized in separate directories by page.
 
