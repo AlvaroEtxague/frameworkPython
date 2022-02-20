@@ -80,3 +80,6 @@ This directory contains the browser drivers. This allows the app to be self serv
 1. Open cmd
 2. `cd C:\path-to-repo-root\`
 3. `allure serve reports`
+4. Further reporting: Allure reports have Jenkins integration and can be included as part of any jenkins job.
+
+## Happy testing.
