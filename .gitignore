@@ -4,7 +4,7 @@ utils
 geckodriver.log
 .idea
 venv
-config.py
-conftest.py
-reports/*
-README.md
+reports
+allure-report
+.vscode
+__pycache__

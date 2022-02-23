@@ -4,22 +4,24 @@ from app_base.base_element import BaseElement
 from app_pages.primer_login import LoginPage
 import allure
 
-class ForgotPasswordPage(basepage):
-    url = "https://sandbox-dashboard.primer.io/forgot-password"
-    page_title = "Dashboard | Primer"
 
+class ForgotPasswordPage(basepage):
     # CONSTRUCTOR
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, driver, conf):
+        super().__init__(driver, conf)
+        self.url = conf.env['forgot_pass_url']
 
     # LOCATORS
-    forgot_password_title = (By.CSS_SELECTOR, ".Title__Root-sc-2rwlde-0.daVCtm")
+    forgot_password_title = (
+        By.CSS_SELECTOR, ".Title__Root-sc-2rwlde-0.daVCtm")
     email = (By.CSS_SELECTOR, "input#username")
     email_validation = (By.CSS_SELECTOR, ".Text__Root-sc-1qalxlo-0.fDJYka")
-    back_to_login_page_link = (By.CSS_SELECTOR, ".Link__StyledText-sc-1yxsw2a-0.Text__Root-sc-1qalxlo-0.dTwHUV.gOnIHd > span")
-    request_link_button = (By.CSS_SELECTOR, ".Button__ButtonRaw-sc-zydeuu-0.gdVDxr > span")
-    email_sent_message = (By.CSS_SELECTOR, ".Callout__ContentRoot-sc-d1p987-0.hRBCwa")
+    back_to_login_page_link = (By.CSS_SELECTOR,
+                               ".Link__StyledText-sc-1yxsw2a-0.Text__Root-sc-1qalxlo-0.dTwHUV.gOnIHd > span")
+    request_link_button = (
+        By.CSS_SELECTOR, ".Button__ButtonRaw-sc-zydeuu-0.gdVDxr > span")
+    email_sent_message = (
+        By.CSS_SELECTOR, ".Callout__ContentRoot-sc-d1p987-0.hRBCwa")
     bad_request_message = (By.CSS_SELECTOR, ".Text__Root-sc-1qalxlo-0.fDJYka")
 
     # GETTERS
@@ -33,11 +35,17 @@ class ForgotPasswordPage(basepage):
 
     @property
     def get_back_to_login_page_link(self):
-        return BaseElement(driver=self.driver, locator=self.back_to_login_page_link)
+        return BaseElement(
+            driver=self.driver,
+            locator=self.back_to_login_page_link
+        )
 
     @property
     def get_request_link_btn(self):
-        return BaseElement(driver=self.driver, locator=self.request_link_button)
+        return BaseElement(
+            driver=self.driver,
+            locator=self.request_link_button
+        )
 
     @property
     def get_email_sent_msg(self):
@@ -45,17 +53,22 @@ class ForgotPasswordPage(basepage):
 
     @property
     def get_forgot_password_title(self):
-        return BaseElement(driver=self.driver, locator=self.forgot_password_title)
+        return BaseElement(
+            driver=self.driver,
+            locator=self.forgot_password_title
+        )
 
     @property
     def get_bad_request_validation(self):
-        return BaseElement(driver=self.driver, locator=self.bad_request_message)
-
+        return BaseElement(
+            driver=self.driver,
+            locator=self.bad_request_message
+        )
 
     # PAGE ACTIONS
     @allure.step("Completing username in Forgot Password Page")
     def input_email(self, email):
-        self.get_email_input.inputText(email)
+        self.get_email_input.input_text(email)
 
     @allure.step("Clicking Request Link button")
     def click_request_link_button(self):
@@ -63,7 +76,7 @@ class ForgotPasswordPage(basepage):
 
     @allure.step("Asserting Request Link button text")
     def assert_back_to_login_page_link_text(self):
-        assert self.get_request_link_btn.getText == "Request link"
+        assert self.get_request_link_btn.get_text == "Request link"
 
     @allure.step("Clicking back to Login page Link")
     def click_back_to_login_link(self):
@@ -71,22 +84,20 @@ class ForgotPasswordPage(basepage):
 
     @allure.step("Asserting empty email address validation")
     def assert_empty_email_input_validation(self):
-        assert self.get_email_address_validation.getText == "An email address is required"
+        assert self.get_email_address_validation.get_text == "An email address is required"
 
     @allure.step("Asserting email sent message")
     def assert_email_sent_msg(self, email):
-        assert self.get_email_sent_msg.getText == "An email has been sent to " \
-               + email + " with further instructions."
+        assert self.get_email_sent_msg.get_text == "An email has been sent to " + \
+            email + " with further instructions."
 
     @allure.step("Asserting bad request validation")
     def assert_bad_request_validation(self):
-        assert self.get_bad_request_validation.getText == "Something went wrong, please try again"
-
+        assert self.get_bad_request_validation.get_text == "Something went wrong, please try again"
 
     @allure.step("Asserting Login button text")
     def assert_back_to_login_page_link_text(self):
-        assert self.get_back_to_login_page_link.getText == "Login"
-
+        assert self.get_back_to_login_page_link.get_text == "Login"
 
     @allure.step("Asserting that we are back to Login Page")
     def back_to_login(self):

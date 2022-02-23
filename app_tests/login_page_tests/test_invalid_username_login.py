@@ -11,14 +11,21 @@ def test_invalid_email_login_error(login_page, my_browser):
         login_page.assert_login_btn_text()
     finally:
         if AssertionError:
-            allure.attach(login_page.driver.get_screenshot_as_png(),
-                          name="Login Page",
-                          attachment_type=allure.attachment_type.PNG)
-    login_page.login_to_primer("bad@email.com", "goodpass1")
+            allure.attach(
+                login_page.driver.get_screenshot_as_png(),
+                name="Login Page",
+                attachment_type=allure.attachment_type.PNG
+            )
+    login_page.login_to_primer(
+        login_page.env['invalid_username'],
+        login_page.env['valid_password']
+    )
     try:
         login_page.assert_invalid_credentials_validation()
     finally:
         if AssertionError:
-            allure.attach(login_page.driver.get_screenshot_as_png(),
-                          name="Invalid credentials validation",
-                          attachment_type=allure.attachment_type.PNG)
+            allure.attach(
+                login_page.driver.get_screenshot_as_png(),
+                name="Invalid credentials validation",
+                attachment_type=allure.attachment_type.PNG
+            )

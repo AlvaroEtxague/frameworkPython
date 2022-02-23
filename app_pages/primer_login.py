@@ -5,19 +5,17 @@ import allure
 
 
 class LoginPage(basepage):
-    url = "https://sandbox-dashboard.primer.io/login"
-    page_title = "Dashboard | Primer"
 
     # CONSTRUCTOR
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, driver, conf):
+        super().__init__(driver, conf)
+        self.url = conf.env['login_url']
 
     # LOCATORS
     username = (By.CSS_SELECTOR, "input#username")
     password = (By.CSS_SELECTOR, "input#password")
     login_button = (
-    By.CSS_SELECTOR, "form > .Button__ButtonRaw-sc-zydeuu-0.gdVDxr")
+        By.CSS_SELECTOR, "form > .Button__ButtonRaw-sc-zydeuu-0.gdVDxr")
     invalid_credentials = (By.CSS_SELECTOR, ".Text__Root-sc-1qalxlo-0.fDJYka")
     forgot_password_button = (By.CSS_SELECTOR, "[href*='/forgot-password']")
 
@@ -36,22 +34,26 @@ class LoginPage(basepage):
 
     @property
     def get_invalid_credentials_validation(self):
-        return BaseElement(driver=self.driver,
-                           locator=self.invalid_credentials)
+        return BaseElement(
+            driver=self.driver,
+            locator=self.invalid_credentials
+        )
 
     @property
     def get_forgot_pass_btn(self):
-        return BaseElement(driver=self.driver,
-                           locator=self.forgot_password_button)
+        return BaseElement(
+            driver=self.driver,
+            locator=self.forgot_password_button
+        )
 
     # PAGE ACTIONS
     @allure.step("Completing username in Login Page")
     def input_username(self, username):
-        self.get_username_input.inputText(username)
+        self.get_username_input.input_text(username)
 
     @allure.step("Completing password in Login Page")
     def input_password(self, password):
-        self.get_password_input.inputText(password)
+        self.get_password_input.input_text(password)
 
     @allure.step("Clicking Login button")
     def click_login_btn(self):
@@ -59,7 +61,7 @@ class LoginPage(basepage):
 
     @allure.step("Asserting Login button text")
     def assert_login_btn_text(self):
-        assert self.get_login_btn.getText == "Log in"
+        assert self.get_login_btn.get_text == "Log in"
 
     @allure.step("Clicking Forgot Password button")
     def click_forgot_password_btn(self):
@@ -67,11 +69,11 @@ class LoginPage(basepage):
 
     @allure.step("Asserting Forgot Password button text")
     def assert_forgot_password_btn_text(self):
-        assert self.get_forgot_pass_btn.getText == "Forgot password?"
+        assert self.get_forgot_pass_btn.get_text == "Forgot password?"
 
     @allure.step("Asserting invalid credentials validation")
     def assert_invalid_credentials_validation(self):
-        assert self.get_invalid_credentials_validation.getText == "Incorrect username or password"
+        assert self.get_invalid_credentials_validation.get_text == "Incorrect username or password"
 
     @allure.step("Asserting Login page url")
     def assert_login_page_url(self):

@@ -11,7 +11,12 @@ def test_login_page(login_page, my_browser):
         login_page.assert_login_btn_text()
     finally:
         if AssertionError:
-            allure.attach(login_page.driver.get_screenshot_as_png(),
-                          name="Login Page",
-                          attachment_type=allure.attachment_type.PNG)
-    login_page.login_to_primer("good@email.com", "goodpass1")
+            allure.attach(
+                login_page.driver.get_screenshot_as_png(),
+                name="Login Page",
+                attachment_type=allure.attachment_type.PNG
+            )
+    login_page.login_to_primer(
+        login_page.env['valid_username'],
+        login_page.env['valid_password']
+    )

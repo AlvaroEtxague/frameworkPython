@@ -1,13 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-
 import allure
 
-class BasePage(object):
-    url = None
 
-    def __init__(self, driver):
+class BasePage(object):
+
+    def __init__(self, driver, conf):
         self.driver = driver
+        self.url = conf.env['base_url']
+        self.page_title = conf.env['page_title']
+        self.env = conf.env
 
     @allure.step("Navigating to page")
     def go(self):
@@ -27,7 +29,9 @@ class BasePage(object):
                 self.options.add_argument("start-maximized")
                 self.options.add_experimental_option(
                     'excludeSwitches', ['enable-logging'])
-                self.driver = webdriver.Chrome(service=serv, options=self.options)
+                self.driver = webdriver.Chrome(
+                    service=serv,
+                    options=self.options)
                 self.driver.implicitly_wait(10)
             except:
                 raise Exception(
@@ -39,7 +43,9 @@ class BasePage(object):
                 self.options = webdriver.FirefoxOptions()
                 self.options.headless = True
                 self.options.add_argument("start-maximized")
-                self.driver = webdriver.Firefox(service=serv, options=self.options)
+                self.driver = webdriver.Firefox(
+                    service=serv,
+                    options=self.options)
                 self.driver.implicitly_wait(10)
             except:
                 raise Exception(

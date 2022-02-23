@@ -29,6 +29,8 @@ This directory contains the browser drivers. This allows the app to be self serv
 
 ## Other files and folders worth mentioning
 - conftest.py >> Contains reusable fixture functions
+- config.py >> Contains the environment configuration
+- environments.py >> Contains data for multiple environments
 
 # Installation Steps:
 ## From Github
@@ -64,22 +66,28 @@ This directory contains the browser drivers. This allows the app to be self serv
 
 
 # RUNNING TESTS WITH PYTEST
+Note: We will always run sets of tests against our chosen environment by calling `--env env_name_here`
+
+
 ## Run tests in parallel
-`pytest -v -s -nauto`
+`pytest --env qa -v -s -nauto`
 
 ## Run tests individually
-`pytest -v -s`
+`pytest --env qa  -v -s`
 
 ## Run tests individually and add them to report
-`pytest -v -s --alluredir=reports`
+`pytest --env qa -v -s --alluredir=reports`
 
 ## Run tests in parallel and add them to report
-`pytest -v -s -nauto --alluredir=reports`
+`pytest --env qa -v -s -nauto --alluredir=reports`
 
 ## To view allure report
 1. Open cmd
 2. `cd C:\path-to-repo-root\`
 3. `allure serve reports`
 4. Further reporting: Allure reports have Jenkins integration and can be included as part of any jenkins job.
+
+# OTHER FEATURES IN PROGRESS
+## Logger
 
 ## Happy testing.
